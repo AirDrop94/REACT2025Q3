@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import Search from './Search';
 
 class Header extends Component {
-  render() {
+  public render(): React.ReactNode {
     return (
       <header>
-        <h1 style={{ textAlign: 'center', margin: '1rem 0' }}>
-          Pokemon Search
-        </h1>
+        <h1>Pokemon Search</h1>
         <Search />
       </header>
     );

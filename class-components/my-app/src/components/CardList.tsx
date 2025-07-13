@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { PokemonItem } from '../types';
+import type { PokemonItem } from '../types';
 import Card from './Card';
+import type { JSX } from 'react/jsx-runtime';
 
 interface Props {
   pokemons: PokemonItem[];
 }
 
 class CardList extends Component<Props> {
-  render() {
+  public render(): JSX.Element {
     const { pokemons } = this.props;
 
     if (pokemons.length === 0) {
-      return <p>Nothing found.</p>;
+      return <p className="empty">Nothing was found</p>;
     }
 
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
+      <div className="card-list">
         {pokemons.map((pokemon) => (
           <Card key={pokemon.name} pokemon={pokemon} />
         ))}

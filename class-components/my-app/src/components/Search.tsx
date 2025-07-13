@@ -1,4 +1,5 @@
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component, type ChangeEvent } from 'react';
+import type { JSX } from 'react/jsx-runtime';
 
 interface Props {
   onSearch?: (searchTerm: string) => void;
@@ -11,11 +12,11 @@ interface State {
 const LS_KEY = 'pokemon_search_term';
 
 class Search extends Component<Props, State> {
-  state: State = {
+  public state: State = {
     inputValue: '',
   };
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const savedTerm = localStorage.getItem(LS_KEY) || '';
     this.setState({ inputValue: savedTerm });
     if (savedTerm && this.props.onSearch) {
@@ -23,11 +24,11 @@ class Search extends Component<Props, State> {
     }
   }
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     this.setState({ inputValue: e.target.value });
   };
 
-  handleSearch = () => {
+  private handleSearch = (): void => {
     const trimmed = this.state.inputValue.trim();
     localStorage.setItem(LS_KEY, trimmed);
     if (this.props.onSearch) {
@@ -35,9 +36,9 @@ class Search extends Component<Props, State> {
     }
   };
 
-  render() {
+  public render(): JSX.Element {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <div className="search-container">
         <input
           type="text"
           value={this.state.inputValue}

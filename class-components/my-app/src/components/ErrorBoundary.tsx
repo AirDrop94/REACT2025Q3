@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, type ErrorInfo, type ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -9,27 +9,27 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  state: State = {
+  public state: State = {
     hasError: false,
   };
 
-  static getDerivedStateFromError(): State {
+  public static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Caught by ErrorBoundary:', error, errorInfo);
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.warn('Caught by ErrorBoundary:', error, errorInfo);
   }
 
-  handleReset = () => {
+  private handleReset = (): void => {
     this.setState({ hasError: false });
   };
 
-  render() {
+  public render(): React.ReactNode {
     if (this.state.hasError) {
       return (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <h1>Something was wrong 😢</h1>
+        <div className="error">
+          <h1>Something was wrong</h1>
           <button onClick={this.handleReset}>Try again</button>
         </div>
       );
