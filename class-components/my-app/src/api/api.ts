@@ -1,15 +1,15 @@
-import { PokemonApiResponse } from '../types';
+import type { PokemonApiResponse } from '../types';
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function fetchPokemonList(
   searchTerm: string,
-  limit: number = 10,
-  offset: number = 0,
+  limit = 10,
+  offset = 0,
 ): Promise<PokemonApiResponse> {
   const trimmedTerm = searchTerm.trim().toLowerCase();
 
-  let url = `${BASE_URL}?limit=${limit}&offset=${offset}`;
+  const url = `${BASE_URL}?limit=${limit}&offset=${offset}`;
 
   const response = await fetch(url);
   if (!response.ok) {
