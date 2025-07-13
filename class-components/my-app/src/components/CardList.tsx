@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PokemonItem } from '../types';
-//import Card from './Card';
+import Card from './Card';
 
 interface Props {
   pokemons: PokemonItem[];
@@ -17,7 +17,7 @@ class CardList extends Component<Props> {
     return (
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
         {pokemons.map((pokemon) => (
-          // <Card key={pokemon.name} pokemon={pokemon} />
+          <Card key={pokemon.name} pokemon={pokemon} />
         ))}
       </div>
     );
