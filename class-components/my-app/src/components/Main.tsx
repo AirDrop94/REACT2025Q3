@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import type { PokemonItem } from '../types';
 import { fetchPokemonList } from '../api/api';
+import type { PokemonItem } from '../types';
 import Search from './Search';
 import CardList from './CardList';
 
@@ -10,51 +10,51 @@ interface State {
   error: string | null;
 }
 
-class Main extends Component<Record<string, never>, State> {
-  public state: State = {
+class Main extends Component<{}, State> {
+  state: State = {
     pokemons: [],
     loading: false,
     error: null,
   };
 
-  public componentDidMount(): void {
+  componentDidMount() {
     this.loadPokemons('');
   }
 
-  private loadPokemons = async (searchTerm: string): Promise<void> => {
+  loadPokemons = async (searchTerm: string) => {
     try {
       this.setState({ loading: true, error: null });
       const data = await fetchPokemonList(searchTerm, 20, 0);
       this.setState({ pokemons: data.results });
     } catch (error) {
-      console.warn('Fetch error:', error);
-      this.setState({ error: 'Can`t load data' });
+      console.error('Fetch error:', error);
+      this.setState({ error: 'Failed to load data' });
     } finally {
       this.setState({ loading: false });
     }
   };
 
-  private handleSearch = (searchTerm: string): void => {
+  handleSearch = (searchTerm: string) => {
     this.loadPokemons(searchTerm);
   };
 
-  private throwError = (): void => {
+  throwError = () => {
     throw new Error('Test error');
   };
 
-  public render(): React.ReactNode {
+  render() {
     const { pokemons, loading, error } = this.state;
 
     return (
-      <main className="main">
+      <main style={{ padding: '1rem' }}>
         <Search onSearch={this.handleSearch} />
-        <button className="error-button" onClick={this.throwError}>
-          Break the app
+        <button onClick={this.throwError} style={{ marginBottom: '1rem' }}>
+          Break the application
         </button>
 
-        {loading && <p className="loading">Loading...</p>}
+        {loading && <p>Loading...</p>}
 
-        {error && <p className="error">{error}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
         {!loading && !error && <CardList pokemons={pokemons} />}
       </main>
