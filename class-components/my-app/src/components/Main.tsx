@@ -10,7 +10,7 @@ interface State {
   error: string | null;
 }
 
-class Main extends Component<{}, State> {
+class Main extends Component<object, State> {
   state: State = {
     pokemons: [],
     loading: false,
