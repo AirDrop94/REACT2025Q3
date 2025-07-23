@@ -1,54 +1,45 @@
-import React, { Component, type ChangeEvent } from 'react';
-import type { JSX } from 'react/jsx-runtime';
+import React, { useEffect, useState, type ChangeEvent } from 'react';
 
 interface Props {
   onSearch?: (searchTerm: string) => void;
 }
 
-interface State {
-  inputValue: string;
-}
-
 const LS_KEY = 'pokemon_search_term';
 
-class Search extends Component<Props, State> {
-  public state: State = {
-    inputValue: '',
-  };
+const Search: React.FC<Props> = ({ onSearch }) => {
+  const [inputValue, setInputValue] = useState('');
 
-  public componentDidMount(): void {
+  useEffect(() => {
     const savedTerm = localStorage.getItem(LS_KEY) || '';
-    this.setState({ inputValue: savedTerm });
-    if (savedTerm && this.props.onSearch) {
-      this.props.onSearch(savedTerm);
+    setInputValue(savedTerm);
+    if (savedTerm && onSearch) {
+      onSearch(savedTerm);
     }
-  }
+  }, [onSearch]);
 
-  private handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ inputValue: e.target.value });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(e.target.value);
   };
 
-  private handleSearch = (): void => {
-    const trimmed = this.state.inputValue.trim();
+  const handleSearch = (): void => {
+    const trimmed = inputValue.trim();
     localStorage.setItem(LS_KEY, trimmed);
-    if (this.props.onSearch) {
-      this.props.onSearch(trimmed);
+    if (onSearch) {
+      onSearch(trimmed);
     }
   };
 
-  public render(): JSX.Element {
-    return (
-      <div className="search-container">
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleChange}
-          placeholder="Enter Pokemon name"
-        />
-        <button onClick={this.handleSearch}>Search</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="search-container">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="Enter Pokemon name"
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
+  );
+};
 
 export default Search;

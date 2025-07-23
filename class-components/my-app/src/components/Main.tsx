@@ -1,65 +1,53 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchPokemonList } from '../api/api';
 import type { PokemonItem } from '../types';
 import Search from './Search';
 import CardList from './CardList';
 
-interface State {
-  pokemons: PokemonItem[];
-  loading: boolean;
-  error: string | null;
-}
+const Main: React.FC = () => {
+  const [pokemons, setPokemons] = useState<PokemonItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-class Main extends Component<object, State> {
-  state: State = {
-    pokemons: [],
-    loading: false,
-    error: null,
-  };
+  useEffect(() => {
+    loadPokemons('');
+  }, []);
 
-  componentDidMount() {
-    this.loadPokemons('');
-  }
-
-  loadPokemons = async (searchTerm: string) => {
+  const loadPokemons = async (searchTerm: string): Promise<void> => {
     try {
-      this.setState({ loading: true, error: null });
+      setLoading(true);
+      setError(null);
       const data = await fetchPokemonList(searchTerm, 20, 0);
-      this.setState({ pokemons: data.results });
+      setPokemons(data.results);
     } catch (error) {
       console.error('Fetch error:', error);
-      this.setState({ error: 'Failed to load data' });
+      setError('Failed to load data');
     } finally {
-      this.setState({ loading: false });
+      setLoading(false);
     }
   };
 
-  handleSearch = (searchTerm: string) => {
-    this.loadPokemons(searchTerm);
+  const handleSearch = (searchTerm: string): void => {
+    loadPokemons(searchTerm);
   };
 
-  throwError = () => {
+  const throwError = (): void => {
     throw new Error('Test error');
   };
 
-  render() {
-    const { pokemons, loading, error } = this.state;
+  return (
+    <main style={{ padding: '1rem' }}>
+      <Search onSearch={handleSearch} />
+      <button onClick={throwError} style={{ marginBottom: '1rem' }}>
+        Break the application
+      </button>
 
-    return (
-      <main style={{ padding: '1rem' }}>
-        <Search onSearch={this.handleSearch} />
-        <button onClick={this.throwError} style={{ marginBottom: '1rem' }}>
-          Break the application
-        </button>
-
-        {loading && <p>Loading...</p>}
-
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-        {!loading && !error && <CardList pokemons={pokemons} />}
-      </main>
-    );
-  }
-}
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {!loading && !error && <CardList pokemons={pokemons} />}
+    </main>
+  );
+};
 
 export default Main;
+

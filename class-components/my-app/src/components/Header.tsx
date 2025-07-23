@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Header extends Component {
-  public render(): React.ReactNode {
-    return (
-      <header>
-        <h1>Pokemon Search</h1>
-      </header>
-    );
-  }
-}
+const Header: React.FC = () => {
+  return (
+    <header>
+      <h1>Pokemon Search</h1>
+    </header>
+  );
+};
 
 export default Header;
