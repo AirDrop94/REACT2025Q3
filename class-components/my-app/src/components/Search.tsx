@@ -1,4 +1,5 @@
-import React, { useEffect, useState, type ChangeEvent } from 'react';
+import React, { useEffect, type ChangeEvent } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
   onSearch?: (searchTerm: string) => void;
@@ -7,15 +8,13 @@ interface Props {
 const LS_KEY = 'pokemon_search_term';
 
 const Search: React.FC<Props> = ({ onSearch }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useLocalStorage<string>(LS_KEY, '');
 
   useEffect(() => {
-    const savedTerm = localStorage.getItem(LS_KEY) || '';
-    setInputValue(savedTerm);
-    if (savedTerm && onSearch) {
-      onSearch(savedTerm);
+    if (inputValue && onSearch) {
+      onSearch(inputValue);
     }
-  }, [onSearch]);
+  }, [inputValue, onSearch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
@@ -23,7 +22,7 @@ const Search: React.FC<Props> = ({ onSearch }) => {
 
   const handleSearch = (): void => {
     const trimmed = inputValue.trim();
-    localStorage.setItem(LS_KEY, trimmed);
+    setInputValue(trimmed);
     if (onSearch) {
       onSearch(trimmed);
     }
