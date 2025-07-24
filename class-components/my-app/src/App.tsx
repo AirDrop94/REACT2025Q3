@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-import ErrorBoundary from './components/ErrorBoundary';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
-import Main from './components/Main';
 
-class App extends Component {
-  public render(): React.ReactNode {
-    return (
-      <ErrorBoundary>
-        <div className="app-container">
-          <Header />
-          <Main />
-        </div>
-      </ErrorBoundary>
-    );
-  }
-}
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
