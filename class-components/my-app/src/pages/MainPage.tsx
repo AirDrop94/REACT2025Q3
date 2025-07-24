@@ -1,59 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { fetchPokemonList } from '../api/api';
-import type { PokemonItem } from '../types';
-import Search from '../components/Search';
+import React from 'react';
+import PokemonDetail from '../components/PokemonDetail';
 import CardList from '../components/CardList';
+import Search from '../components/Search';
+import { useSearchParams } from 'react-router-dom';
+import { usePokemonList } from '../hooks/usePokemonList';
 
-const ITEMS_PER_PAGE = 20;
-
-const MainPage: React.FC = () => {
-  const [pokemons, setPokemons] = useState<PokemonItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const searchTerm = searchParams.get('q') || '';
   const page = Number(searchParams.get('page')) || 1;
+  const offset = (page - 1) * 20;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const offset = (page - 1) * ITEMS_PER_PAGE;
-        const data = await fetchPokemonList('', ITEMS_PER_PAGE, offset);
-        setPokemons(data.results);
-        setError(null);
-      } catch (e) {
-        setError('Failed to load pokemons');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const { pokemons, loading, error } = usePokemonList(searchTerm, offset);
 
-    fetchData();
-  }, [page]);
-
-  const handlePageChange = (nextPage: number) => {
-    setSearchParams({ page: nextPage.toString() });
+  const handleSearch = (term: string) => {
+    setSearchParams({ q: term, page: '1' });
   };
 
   return (
-    <main>
-      <Search />
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && !error && <CardList pokemons={pokemons} />}
-      <div style={{ marginTop: '1rem' }}>
-        <button
-          onClick={() => handlePageChange(page - 1)}
-          disabled={page === 1}
-        >
-          Previous
-        </button>
-        <span style={{ margin: '0 1rem' }}>Page {page}</span>
-        <button onClick={() => handlePageChange(page + 1)}>Next</button>
-      </div>
-    </main>
+    <div style={{ display: 'flex', width: '100%' }}>
+      <main style={{ flex: 1, padding: '1rem' }}>
+        <Search onSearch={handleSearch} />
+
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {!loading && !error && <CardList pokemons={pokemons} />}
+      </main>
+
+      <aside style={{ width: '300px', borderLeft: '1px solid #ccc' }}>
+        <PokemonDetail />
+      </aside>
+    </div>
   );
 };
 
