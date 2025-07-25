@@ -1,7 +1,7 @@
 import React from 'react';
 import CardList from '../components/CardList';
 import Search from '../components/Search';
-import { useSearchParams, Outlet } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { usePokemonList } from '../hooks/usePokemonList';
 
 const MainPage = () => {
@@ -16,17 +16,11 @@ const MainPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
-      <main style={{ flex: 1, padding: '1rem' }}>
-        <Search onSearch={handleSearch} />
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {!loading && !error && <CardList pokemons={pokemons} />}
-      </main>
-
-      <aside style={{ width: '300px', borderLeft: '1px solid #ccc' }}>
-        <Outlet />
-      </aside>
+    <div style={{ padding: '1rem' }}>
+      <Search onSearch={handleSearch} />
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {!loading && !error && <CardList pokemons={pokemons} />}
     </div>
   );
 };

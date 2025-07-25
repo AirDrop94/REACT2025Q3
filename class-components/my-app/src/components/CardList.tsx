@@ -11,8 +11,8 @@ const CardList: React.FC<Props> = ({ pokemons }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const handleCardClick = (id: string) => {
-    searchParams.set('details', id);
+  const handleCardClick = (name: string) => {
+    searchParams.set('details', name);
     navigate(`/?${searchParams.toString()}`, { replace: false });
   };
 
@@ -23,7 +23,11 @@ const CardList: React.FC<Props> = ({ pokemons }) => {
   return (
     <div className="card-list">
       {pokemons.map((pokemon) => (
-        <Card key={pokemon.name} pokemon={pokemon} onClick={handleCardClick} />
+        <Card
+          key={pokemon.name}
+          pokemon={pokemon}
+          onClick={() => handleCardClick(pokemon.name)}
+        />
       ))}
     </div>
   );

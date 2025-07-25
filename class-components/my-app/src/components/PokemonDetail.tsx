@@ -17,6 +17,8 @@ const PokemonDetail: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log('details param:', detailsId); // <-- Вот здесь проверка
+
     if (!detailsId) {
       setPokemon(null);
       return;
