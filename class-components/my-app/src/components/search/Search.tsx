@@ -1,4 +1,4 @@
-import React, { useEffect, type ChangeEvent } from 'react';
+import React, { useEffect, useRef, type ChangeEvent } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import './Search.css';
 
@@ -11,9 +11,12 @@ const LS_KEY = 'pokemon_search_term';
 const Search: React.FC<Props> = ({ onSearch }) => {
   const [inputValue, setInputValue] = useLocalStorage<string>(LS_KEY, '');
 
+  const didSearchOnMount = useRef(false);
+
   useEffect(() => {
-    if (inputValue && onSearch) {
-      onSearch(inputValue);
+    if (!didSearchOnMount.current && inputValue && onSearch) {
+      onSearch(inputValue.trim());
+      didSearchOnMount.current = true;
     }
   }, [inputValue, onSearch]);
 
