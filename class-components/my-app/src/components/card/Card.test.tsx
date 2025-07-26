@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
-import type { PokemonItem } from '../types';
+import type { PokemonItem } from '../../types';
 
 describe('Card component', () => {
   const basePokemon: PokemonItem = {

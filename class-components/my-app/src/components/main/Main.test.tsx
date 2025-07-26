@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import Main from './Main';
-import * as api from '../api/api';
-import type { PokemonItem } from '../types';
+import * as api from '../../api/api';
+import type { PokemonItem } from '../../types';
 
 jest.mock('../api/api');
 

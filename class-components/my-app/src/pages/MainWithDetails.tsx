@@ -1,6 +1,6 @@
 import React from 'react';
 import MainPage from './MainPage';
-import PokemonDetail from '../components/PokemonDetail';
+import PokemonDetail from '../components/pokemonDetail/PokemonDetail';
 import { useSearchParams } from 'react-router-dom';
 
 const MainWithDetails: React.FC = () => {

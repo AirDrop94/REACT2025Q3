@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPokemonList } from '../api/api';
-import type { PokemonItem } from '../types';
-import Search from './Search';
-import CardList from './CardList';
+import { fetchPokemonList } from '../../api/api';
+import type { PokemonItem } from '../../types';
+
+import Search from '../search/Search';
+import CardList from '../cardList/CardList';
 
 const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonItem[]>([]);

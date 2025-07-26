@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Search from './components/Search';
+import Search from './Search';
 
 const LS_KEY = 'pokemon_search_term';
 
