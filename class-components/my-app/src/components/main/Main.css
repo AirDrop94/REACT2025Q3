@@ -1,0 +1,22 @@
+.main {
+  padding: 1rem;
+}
+
+.main__break-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.main__break-button:hover {
+  background-color: #c82333;
+}
+
+.main__error {
+  color: red;
+  font-weight: bold;
+}

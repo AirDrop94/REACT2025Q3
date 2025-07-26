@@ -1,0 +1,17 @@
+.layout-nav {
+  padding: 1rem;
+}
+
+.layout-link {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.layout-link:hover {
+  text-decoration: underline;
+}
+
+.layout-content {
+  display: flex;
+}
