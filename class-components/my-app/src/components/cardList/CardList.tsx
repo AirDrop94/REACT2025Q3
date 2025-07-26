@@ -2,6 +2,7 @@ import React from 'react';
 import type { PokemonItem } from '../../types';
 import Card from '../card/Card';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import './CardList.css';
 
 interface Props {
   pokemons: PokemonItem[];

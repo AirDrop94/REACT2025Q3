@@ -1,0 +1,32 @@
+.header {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.header__nav {
+  margin-top: 0.5rem;
+}
+
+.header__link {
+  margin: 0 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header__link:hover {
+  text-decoration: underline;
+}
+
+.header__separator {
+  margin: 0 0.3rem;
+  color: #555;
+}

@@ -1,0 +1,12 @@
+.main-page {
+  padding: 1rem;
+}
+
+.main-loading {
+  font-style: italic;
+}
+
+.main-error {
+  color: red;
+  font-weight: bold;
+}

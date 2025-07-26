@@ -4,6 +4,7 @@ import type { PokemonItem } from '../../types';
 
 import Search from '../search/Search';
 import CardList from '../cardList/CardList';
+import './Main.css';
 
 const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonItem[]>([]);
@@ -37,18 +38,17 @@ const Main: React.FC = () => {
   };
 
   return (
-    <main style={{ padding: '1rem' }}>
+    <main className="main">
       <Search onSearch={handleSearch} />
-      <button onClick={throwError} style={{ marginBottom: '1rem' }}>
+      <button className="main__break-button" onClick={throwError}>
         Break the application
       </button>
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="main__error">{error}</p>}
       {!loading && !error && <CardList pokemons={pokemons} />}
     </main>
   );
 };
 
 export default Main;
-

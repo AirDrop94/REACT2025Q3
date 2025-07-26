@@ -1,5 +1,6 @@
 import React, { useEffect, type ChangeEvent } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import './Search.css';
 
 interface Props {
   onSearch?: (searchTerm: string) => void;
@@ -31,12 +32,15 @@ const Search: React.FC<Props> = ({ onSearch }) => {
   return (
     <div className="search-container">
       <input
+        className="search-input"
         type="text"
         value={inputValue}
         onChange={handleChange}
         placeholder="Enter Pokemon name"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button className="search-button" onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 };

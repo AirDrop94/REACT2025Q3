@@ -1,16 +1,17 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import Header from '../components/header/Header';
+import './Layout.css';
 
 const Layout = () => {
   return (
     <>
       <Header />
-      <nav style={{ padding: '1rem' }}>
-        <Link to="/" style={{ marginRight: '1rem' }}>Home</Link>
-        <Link to="/about">About</Link>
+      <nav className="layout-nav">
+        <Link to="/" className="layout-link">Home</Link>
+        <Link to="/about" className="layout-link">About</Link>
       </nav>
-      <div style={{ display: 'flex' }}>
+      <div className="layout-content">
         <Outlet />
       </div>
     </>

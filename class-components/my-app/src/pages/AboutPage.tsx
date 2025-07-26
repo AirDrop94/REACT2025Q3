@@ -1,11 +1,17 @@
 import React from 'react';
+import './AboutPage.css';
 
 const AboutPage: React.FC = () => {
   return (
-    <div>
-      <h2>About This App</h2>
-      <p>Author: Artsiom Luksha</p>
-      <a href="https://rs.school/react/" target="_blank" rel="noopener noreferrer">
+    <div className="about-page">
+      <h2 className="about-title">Pokemon Seacrh</h2>
+      <p className="about-author">Author: Artsiom Luksha</p>
+      <a
+        className="about-link"
+        href="https://rs.school/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         RS School React Course
       </a>
     </div>

@@ -1,0 +1,23 @@
+.pokemon-detail {
+  padding: 1rem;
+  border-left: 1px solid #ccc;
+  width: 300px;
+}
+
+.pokemon-detail__close-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pokemon-detail__close-button:hover {
+  background-color: #c82333;
+}
+
+.pokemon-detail__info {
+  text-align: center;
+}

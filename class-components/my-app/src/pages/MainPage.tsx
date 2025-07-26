@@ -4,6 +4,7 @@ import Search from '../components/search/Search';
 import Pagination from '../components/pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { usePokemonList } from '../hooks/usePokemonList';
+import './MainPage.css';
 
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,10 +18,10 @@ const MainPage = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="main-page">
       <Search onSearch={handleSearch} />
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {loading && <p className="main-loading">Loading...</p>}
+      {error && <p className="main-error">{error}</p>}
       {!loading && !error && (
         <>
           <CardList pokemons={pokemons} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { PokemonItem } from '../../types';
+import './Card.css';
 
 interface Props {
   pokemon: PokemonItem;
@@ -22,7 +23,7 @@ const Card: React.FC<Props> = ({ pokemon, onClick }) => {
   };
 
   return (
-    <div className="card" onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div className="card" onClick={handleClick}>
       <img src={imageUrl} alt={name} />
       <h3>{name}</h3>
     </div>
