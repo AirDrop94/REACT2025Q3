@@ -22,7 +22,6 @@ const Main: React.FC = () => {
       const data = await fetchPokemonList(searchTerm, 20, 0);
       setPokemons(data.results);
     } catch (error) {
-      console.error('Fetch error:', error);
       setError('Failed to load data');
     } finally {
       setLoading(false);
