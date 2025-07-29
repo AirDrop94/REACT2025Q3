@@ -17,7 +17,6 @@ const Card: React.FC<Props> = ({ pokemon, onClick }) => {
 
   const handleClick = () => {
     if (onClick) {
-      console.log('Clicked on:', id);
       onClick(name);
     }
   };
