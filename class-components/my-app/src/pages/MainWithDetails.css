@@ -1,6 +1,8 @@
 .main-with-details {
   display: flex;
   width: 100%;
+  position: relative;
+  padding-bottom: 70px;
 }
 
 .main-section {
