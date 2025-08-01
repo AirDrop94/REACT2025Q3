@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { fetchPokemonList } from '../../api/api';
 import type { PokemonItem } from '../../types';
 
@@ -11,23 +11,22 @@ const Main: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadPokemons('');
-  }, []);
-
-  const loadPokemons = async (searchTerm: string): Promise<void> => {
+  const loadPokemons = useCallback(async (searchTerm: string): Promise<void> => {
     try {
       setLoading(true);
       setError(null);
       const data = await fetchPokemonList(searchTerm, 20, 0);
       setPokemons(data.results);
     } catch (error) {
-      console.error('Fetch error:', error);
       setError('Failed to load data');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadPokemons('');
+  }, [loadPokemons]);
 
   const handleSearch = (searchTerm: string): void => {
     loadPokemons(searchTerm);

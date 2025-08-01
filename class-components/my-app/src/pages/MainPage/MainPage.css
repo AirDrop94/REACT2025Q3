@@ -1,5 +1,6 @@
 .main-page {
   padding: 1rem;
+  color: var(--text-color);
 }
 
 .main-loading {
@@ -7,6 +8,6 @@
 }
 
 .main-error {
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
 }
