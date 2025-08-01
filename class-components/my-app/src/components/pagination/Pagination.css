@@ -8,14 +8,14 @@
 .pagination__button {
   padding: 0.4rem 0.8rem;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--pagination-bg);
+  color: var(--pagination-text);
   border-radius: 4px;
   cursor: pointer;
 }
 
 .pagination__button:disabled {
-  background-color: #cccccc;
+  background-color: var(--pagination-disabled-bg);
   cursor: not-allowed;
 }
 

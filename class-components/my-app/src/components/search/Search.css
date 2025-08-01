@@ -9,11 +9,15 @@
   padding: 0.5rem;
   font-size: 1rem;
   flex: 1;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
 }
 
 .search-button {
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: var(--accent-color);
   color: #fff;
   font-size: 1rem;
   border: none;

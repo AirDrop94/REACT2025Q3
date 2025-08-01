@@ -3,6 +3,8 @@
   width: 100%;
   position: relative;
   padding-bottom: 70px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .main-section {
@@ -11,5 +13,6 @@
 
 .details-section {
   width: 300px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid var(--detail-border-color);
+  background-color: var(--detail-bg);
 }
