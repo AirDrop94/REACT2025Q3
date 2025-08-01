@@ -16,7 +16,6 @@ const Header: React.FC = () => {
       </nav>
       <div className="header__theme-toggle">
         <label htmlFor="theme-toggle" className="header__theme-label">
-          Theme:
         </label>
         <button
           id="theme-toggle"

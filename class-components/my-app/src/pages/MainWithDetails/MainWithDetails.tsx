@@ -1,7 +1,7 @@
 import React from 'react';
-import MainPage from './MainPage';
-import PokemonDetail from '../components/pokemonDetail/PokemonDetail';
-import SelectedFlyout from '../components/selectedFlyout/SelectedFlyout';
+import MainPage from '../MainPage/MainPage';
+import PokemonDetail from '../../components/pokemonDetail/PokemonDetail';
+import SelectedFlyout from '../../components/selectedFlyout/SelectedFlyout';
 import { useSearchParams } from 'react-router-dom';
 import './MainWithDetails.css';
 
